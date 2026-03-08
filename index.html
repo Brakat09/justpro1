@@ -20,7 +20,7 @@
         }
 
         .bg-wrapper {
-            background: url('https://res.cloudinary.com/dpsw9nrr0/image/upload/v1772924318/Gemini_Generated_Image_alaordalaordalao_jakqcv.png') no-repeat center center fixed;
+            background: url('Gemini_Generated_Image_alaordalaordalao.JPG') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
             display: flex;
@@ -33,7 +33,7 @@
             background: var(--glass);
             width: 100%;
             max-width: 400px;
-            border-radius: 40px 10px 40px 10px; /* شكل إسلامي/رمضاني */
+            border-radius: 40px 10px 40px 10px;
             border: 2px solid #d4af37;
             padding: 30px 20px;
             text-align: center;
@@ -44,7 +44,6 @@
         .uni-header { color: #f1d592; font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; }
         h1 { color: #d4af37; font-size: 2.2rem; margin: 5px 0; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); }
         
-        /* لوحة معلومات واضحة جداً */
         .info-grid {
             background: rgba(255, 255, 255, 0.1);
             border: 1px dashed #d4af37;
@@ -61,14 +60,13 @@
         .info-item { display: flex; align-items: center; justify-content: center; gap: 5px; }
         .full-width { grid-column: span 2; color: #f1d592; font-weight: bold; font-size: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px; }
 
-        /* أزرار بشكل رمضاني ونبض */
         .links-group { display: flex; flex-direction: column; gap: 12px; }
 
         .btn-link {
             background: var(--gold-gradient);
             color: #4a0e0e;
             padding: 14px;
-            border-radius: 15px 50px 15px 50px; /* تصميم رمضاني */
+            border-radius: 15px 50px 15px 50px;
             text-decoration: none;
             font-weight: bold;
             font-size: 1rem;
@@ -87,9 +85,16 @@
         }
 
         .btn-link:hover { transform: translateY(-3px) !important; filter: brightness(1.1); }
-        .btn-wa { background: #128C7E; color: white; border: 1px solid #d4af37; }
+        
+        .btn-wa { 
+            background: #128C7E; 
+            color: white; 
+            border: 1px solid #d4af37; 
+            height: auto; 
+            line-height: 1.4; 
+            padding: 12px 10px;
+        }
 
-        /* بوب آب */
         .popup-overlay {
             display: none;
             position: fixed;
@@ -118,7 +123,6 @@
         .feature-list li { padding: 8px 0; font-size: 0.9rem; border-bottom: 1px dashed #eee; color: #333; }
         .close-popup { background: #7a1616; color: white; border: none; padding: 12px; border-radius: 50px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 10px; }
 
-        /* الفوتر */
         .footer-text { margin-top: 25px; color: #f1d592; font-size: 0.75rem; border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 15px; }
         .dev-credit { display: block; margin-top: 8px; color: white; text-decoration: none; font-weight: bold; transition: 0.3s; }
         .dev-credit:hover { color: #25D366; }
@@ -145,7 +149,11 @@
                 <a href="#" class="btn-link">✨ انضم إلينا (فورم الانتساب)</a>
                 <button class="btn-link" onclick="openPopup('details')">📖 تفاصيل المبادرة والفعاليات</button>
                 <button class="btn-link" onclick="openPopup('social')" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid #d4af37; animation: none;">📱 حسابات فريق ابسيلون</button>
-                <a href="https://wa.me/962789785559" class="btn-link btn-wa">💬 استفسارات المبادرة (واتساب)</a>
+                
+                <a href="https://wa.me/962789785559" class="btn-link btn-wa">
+                    <span style="display: block; font-size: 1.1rem;">💬 حاب تساهم وما بتقدر تيجـي؟</span>
+                    <span style="display: block; font-size: 0.85rem; font-weight: normal; opacity: 0.9;">"ولا يهمك.. الخير بوصل بلمحة عين، تواصل معنا وفالك طيب"</span>
+                </a>
             </div>
 
             <div class="footer-text">
@@ -176,14 +184,14 @@
             <p style="font-size: 0.85rem; color: #7a1616; font-weight: bold; background: #fff5f5; padding: 8px; border-radius: 10px;">
                 "بمشاركتك.. أنت تبني ذكرى جميلة في قلوبهم"
             </p>
-            <button class="close-popup" onclick="closePopup()">سأكون جزءاً من فرحتهم</button>
+            <button class="close-popup" onclick="closePopup()">سأكون جزءاً من فرحتهم 🤍</button>
         `;
 
         const socialHtml = `
             <h2 style="color: #7a1616;">تواصل معنا ✨</h2>
             <div style="display: flex; flex-direction: column; gap: 10px; margin: 15px 0;">
                 <a href="https://web.facebook.com/profile.php?id=61557124923423" target="_blank" style="background:#1877F2; padding:12px; border-radius:15px; color:white; text-decoration:none; font-weight:bold;">صفحة الفريق</a>
-                <a href="https://web.facebook.com/groups/669802975107551" target="_blank" style="background:#0084FF; padding:12px; border-radius:15px; color:white; text-decoration:none; font-weight:bold;">مجموعة الفريق </a>
+                <a href="https://web.facebook.com/groups/669802975107551" target="_blank" style="background:#0084FF; padding:12px; border-radius:15px; color:white; text-decoration:none; font-weight:bold;">مجموعة الفريق</a>
                 <a href="https://www.instagram.com/epsilon_team24/" target="_blank" style="background: linear-gradient(45deg, #f09433, #bc1888); padding:12px; border-radius:15px; color:white; text-decoration:none; font-weight:bold;">انستغرام الفريق</a>
             </div>
             <button class="close-popup" onclick="closePopup()">إغلاق</button>
