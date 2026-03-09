@@ -1,224 +1,484 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مبادرة أيادي الخير | فريق ابسيلون</title>
-    <style>
-        :root {
-            --ramadan-red: #7a1616;
-            --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f1d592 50%, #d4af37 100%);
-            --glass: rgba(122, 22, 22, 0.93);
-            --lantern-glow: 0 0 15px rgba(212, 175, 55, 0.5);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #000;
-        }
+<title>مبادرة أيادي الخير | فريق ابسيلون</title>
 
-        .bg-wrapper {
-            background: url('https://res.cloudinary.com/dpsw9nrr0/image/upload/v1772924318/Gemini_Generated_Image_alaordalaordalao_jakqcv.png') no-repeat center center fixed;
-            background-size: cover;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-        }
+<style>
 
-        .main-card {
-            background: var(--glass);
-            width: 100%;
-            max-width: 400px;
-            border-radius: 40px 10px 40px 10px;
-            border: 2px solid #d4af37;
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7), var(--lantern-glow);
-            backdrop-filter: blur(12px);
-        }
+:root{
+--ramadan-red:#7a1616;
+--gold:#d4af37;
+--gold-gradient:linear-gradient(135deg,#d4af37,#f1d592,#d4af37);
+--glass:rgba(122,22,22,0.93);
+}
 
-        .uni-header { color: #f1d592; font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; }
-        h1 { color: #d4af37; font-size: 2.2rem; margin: 5px 0; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); }
-        
-        .info-grid {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px dashed #d4af37;
-            border-radius: 20px;
-            padding: 15px;
-            margin: 20px 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            color: white;
-            font-size: 0.9rem;
-        }
+body,html{
+height:100%;
+margin:0;
+font-family:'Segoe UI';
+background:#000;
+overflow-x:hidden;
+}
 
-        .info-item { display: flex; align-items: center; justify-content: center; gap: 5px; }
-        .full-width { grid-column: span 2; color: #f1d592; font-weight: bold; font-size: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px; }
+/* نجوم الخلفية */
 
-        .links-group { display: flex; flex-direction: column; gap: 12px; }
+body::before{
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle,rgba(255,255,255,0.2) 1px,transparent 1px);
+background-size:80px 80px;
+opacity:0.15;
+animation:stars 60s linear infinite;
+z-index:-2;
+}
 
-        .btn-link {
-            background: var(--gold-gradient);
-            color: #4a0e0e;
-            padding: 14px;
-            border-radius: 15px 50px 15px 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: 0.3s;
-            cursor: pointer;
-            border: none;
-            display: block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            animation: pulse 3s infinite;
-        }
+@keyframes stars{
+0%{transform:translateY(0)}
+100%{transform:translateY(-400px)}
+}
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
-            100% { transform: scale(1); }
-        }
+/* فوانيس */
 
-        .btn-link:hover { transform: translateY(-3px) !important; filter: brightness(1.1); }
-        
-        .btn-wa { 
-            background: #128C7E; 
-            color: white; 
-            border: 1px solid #d4af37; 
-            height: auto; 
-            line-height: 1.4; 
-            padding: 12px 10px;
-        }
+.lantern{
+position:fixed;
+top:-60px;
+font-size:26px;
+opacity:0.7;
+animation:lantern 14s linear infinite;
+}
 
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(10px);
-        }
+.l1{left:10%;animation-delay:0s}
+.l2{left:40%;animation-delay:4s}
+.l3{left:70%;animation-delay:8s}
 
-        .popup-content {
-            background: #fff;
-            width: 85%;
-            max-width: 350px;
-            border-radius: 25px;
-            padding: 25px;
-            text-align: center;
-            border: 3px solid #7a1616;
-            animation: popIn 0.4s ease-out;
-        }
+@keyframes lantern{
+0%{transform:translateY(-100px)}
+100%{transform:translateY(110vh)}
+}
 
-        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.bg-wrapper{
+background:url('https://res.cloudinary.com/dpsw9nrr0/image/upload/v1772924318/Gemini_Generated_Image_alaordalaordalao_jakqcv.png') no-repeat center center fixed;
+background-size:cover;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:15px;
+}
 
-        .feature-list { list-style: none; padding: 0; text-align: right; margin: 15px 0; }
-        .feature-list li { padding: 8px 0; font-size: 0.9rem; border-bottom: 1px dashed #eee; color: #333; }
-        .close-popup { background: #7a1616; color: white; border: none; padding: 12px; border-radius: 50px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 10px; }
+/* الكارد */
 
-        .footer-text { margin-top: 25px; color: #f1d592; font-size: 0.75rem; border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 15px; }
-        .dev-credit { display: block; margin-top: 8px; color: white; text-decoration: none; font-weight: bold; transition: 0.3s; }
-        .dev-credit:hover { color: #25D366; }
-    </style>
+.main-card{
+
+background:var(--glass);
+width:100%;
+max-width:400px;
+
+border-radius:40px 10px 40px 10px;
+border:2px solid var(--gold);
+
+padding:30px 20px;
+text-align:center;
+
+box-shadow:
+0 0 25px rgba(212,175,55,0.5),
+0 20px 60px rgba(0,0,0,0.8);
+
+backdrop-filter:blur(12px);
+
+animation:cardAppear 1s ease;
+
+}
+
+/* ظهور */
+
+@keyframes cardAppear{
+from{
+opacity:0;
+transform:translateY(40px) scale(.95)
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1)
+}
+}
+
+/* توهج حول الكارد */
+
+.main-card::before{
+content:"";
+position:absolute;
+inset:-3px;
+border-radius:40px 10px 40px 10px;
+background:linear-gradient(45deg,transparent,#d4af37,transparent);
+opacity:.25;
+filter:blur(10px);
+z-index:-1;
+animation:glow 6s linear infinite;
+}
+
+@keyframes glow{
+0%{opacity:.2}
+50%{opacity:.6}
+100%{opacity:.2}
+}
+
+.uni-header{
+color:#f1d592;
+font-size:.8rem;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+h1{
+color:var(--gold);
+font-size:2.2rem;
+margin:5px 0;
+text-shadow:0 0 10px rgba(212,175,55,.7);
+}
+
+.info-grid{
+
+background:rgba(255,255,255,.1);
+border:1px dashed var(--gold);
+
+border-radius:20px;
+
+padding:15px;
+
+margin:20px 0;
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:10px;
+
+color:white;
+
+font-size:.9rem;
+
+}
+
+.info-item{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:5px;
+}
+
+.full-width{
+grid-column:span 2;
+color:#f1d592;
+font-weight:bold;
+}
+
+/* الأزرار */
+
+.links-group{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.btn-link{
+
+background:var(--gold-gradient);
+color:#4a0e0e;
+
+padding:14px;
+
+border-radius:15px 50px 15px 50px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+font-size:1rem;
+
+transition:.35s;
+
+cursor:pointer;
+
+border:none;
+
+display:block;
+
+position:relative;
+
+overflow:hidden;
+
+box-shadow:0 6px 15px rgba(0,0,0,.35);
+
+}
+
+/* لمعة */
+
+.btn-link::after{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,.8),transparent);
+transition:.7s;
+}
+
+.btn-link:hover::after{
+left:100%;
+}
+
+.btn-link:hover{
+transform:translateY(-4px) scale(1.03);
+box-shadow:0 0 20px rgba(212,175,55,.8);
+}
+
+/* زر الانضمام يهتز */
+
+.links-group a:first-child{
+animation:shake 3s infinite;
+}
+
+@keyframes shake{
+0%,100%{transform:translateX(0)}
+2%{transform:translateX(-2px)}
+4%{transform:translateX(2px)}
+}
+
+.btn-wa{
+background:#128C7E;
+color:white;
+border:1px solid var(--gold);
+}
+
+/* popup */
+
+.popup-overlay{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.9);
+z-index:1000;
+justify-content:center;
+align-items:center;
+backdrop-filter:blur(10px);
+}
+
+.popup-content{
+background:#fff;
+width:85%;
+max-width:350px;
+border-radius:25px;
+padding:25px;
+text-align:center;
+border:3px solid #7a1616;
+animation:popup .4s ease;
+}
+
+@keyframes popup{
+from{
+transform:scale(.7);
+opacity:0
+}
+to{
+transform:scale(1);
+opacity:1
+}
+}
+
+.close-popup{
+background:#7a1616;
+color:white;
+border:none;
+padding:12px;
+border-radius:50px;
+width:100%;
+cursor:pointer;
+font-weight:bold;
+margin-top:10px;
+}
+
+.footer-text{
+margin-top:25px;
+color:#f1d592;
+font-size:.75rem;
+border-top:1px solid rgba(212,175,55,.3);
+padding-top:15px;
+}
+
+.dev-credit{
+display:block;
+margin-top:8px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.dev-credit:hover{
+color:#25D366;
+}
+
+</style>
 </head>
+
 <body>
 
-    <div class="bg-wrapper">
-        <div class="main-card">
-            <div class="uni-header">جامعة العلوم والتكنولوجيا الأردنية <br> فريق ابسيلون - قسم الرياضيات والإحصاء</div>
-            
-            <h1>"أيادي الخير"</h1>
-            <p style="color: white; font-style: italic; font-size: 0.9rem; margin-bottom: 15px;">"إفطاركم معنا فرحة لقلوبهم الصغيره 🤍"</p>
+<div class="lantern l1">🏮</div>
+<div class="lantern l2">🏮</div>
+<div class="lantern l3">🏮</div>
 
-            <div class="info-grid">
-                <div class="info-item">📍 إربد سيتي سنتر</div>
-                <div class="info-item">📅 12/3/2026</div>
-                <div class="info-item">🕒 3:00 - 9:00 م</div>
-                <div class="info-item">🌙 إفطار أيتام</div>
-                <div class="full-width">💰 تذكرة العطاء: 6 دنانير </div>
-            </div>
+<div class="bg-wrapper">
 
-            <div class="links-group">
-                <a href="https://forms.gle/Hgtw8ZrdphFqdJRX8" class="btn-link">✨ انضم إلينا (فورم الانتساب)</a>
-                <button class="btn-link" onclick="openPopup('details')">📖 تفاصيل المبادرة والفعاليات</button>
-                <button class="btn-link" onclick="openPopup('social')" style="background: rgba(255,255,255,0.1); color: white; border: 1px solid #d4af37; animation: none;">📱 حسابات فريق ابسيلون</button>
-                
-                <a href="https://wa.me/962789785559" class="btn-link btn-wa">
-                    <span style="display: block; font-size: 1.1rem;">💬 حاب تساهم وما بتقدر تيجـي؟</span>
-                    <span style="display: block; font-size: 0.85rem; font-weight: normal; opacity: 0.9;">"ولا يهمك.. الخير بوصل بلمحة عين، تواصل معنا "</span>
-                </a>
-            </div>
+<div class="main-card">
 
-            <div class="footer-text">
-                برعاية الأستاذ الدكتور عامر الدرويش  <br> 
-                © فريق ابسيلون 2026 <br>
-                <a href="https://wa.me/962781322633" class="dev-credit">طُوّر بواسطة BRAKAT 🚀</a>
-            </div>
-        </div>
-    </div>
+<div class="uni-header">
+جامعة العلوم والتكنولوجيا الأردنية <br>
+فريق ابسيلون - قسم الرياضيات والإحصاء
+</div>
 
-    <div class="popup-overlay" id="popup">
-        <div class="popup-content" id="popup-inner"></div>
-    </div>
+<h1>"أيادي الخير"</h1>
 
-    <script>
-        const detailsHtml = `
-            <h2 style="color: #7a1616;">إفطار الصائم الصغير 🌙</h2>
-            <p style="text-align: right; font-size: 0.9rem; color: #444; line-height: 1.6;">
-                هم ليسوا مجرد أيتام، هم قطعة من جنة ينتظرون حنانكم.. <br>
-                <b>تذكرتكم تشمل للصغار:</b>
-            </p>
-            <ul class="feature-list">
-                <li>✨ 2 سندوش برغر اطفال </li>
-                <li>✨عصير أو كولا</li>
-                <li>✨بطاطا </li>
-                <li>✨ آيس كريم </li>
-                <li>✨8 العاب من اختيارهم</li>
-                <li>✨ رسم على الوجه </li>
-                <li>✨ فعاليات والعاب </li>
-                <li>✨ وجبة افطار للمتطوع</li>
-              
+<p style="color:white;font-style:italic;font-size:.9rem;margin-bottom:15px;">
+"إفطاركم معنا فرحة لقلوبهم الصغيره 🤍"
+</p>
 
+<div class="info-grid">
 
+<div class="info-item">📍 إربد سيتي سنتر</div>
+<div class="info-item">📅 12/3/2026</div>
 
+<div class="info-item">🕒 3:00 - 9:00 م</div>
+<div class="info-item">🌙 إفطار أيتام</div>
 
-            </ul>
-            <p style="font-size: 0.85rem; color: #7a1616; font-weight: bold; background: #fff5f5; padding: 8px; border-radius: 10px;">
-                "بمشاركتك.. أنت تبني ذكرى جميلة في قلوبهم"
-            </p>
-            <button class="close-popup" onclick="closePopup()">سأكون جزءاً من فرحتهم 🤍</button>
-        `;
+<div class="full-width">
+💰 تذكرة العطاء: 6 دنانير
+</div>
 
-        const socialHtml = `
-            <h2 style="color: #7a1616;">تواصل معنا ✨</h2>
-            <div style="display: flex; flex-direction: column; gap: 10px; margin: 15px 0;">
-                <a href="https://web.facebook.com/profile.php?id=61557124923423" target="_blank" style="background:#1877F2; padding:12px; border-radius:15px; color:white; text-decoration:none; font-weight:bold;">صفحة الفريق</a>
-                <a href="https://web.facebook.com/groups/669802975107551" target="_blank" style="background:#0084FF; padding:12px; border-radius:15px; color:white; text-decoration:none; font-weight:bold;">مجموعة الفريق</a>
-                <a href="https://www.instagram.com/epsilon_team24/" target="_blank" style="background: linear-gradient(45deg, #f09433, #bc1888); padding:12px; border-radius:15px; color:white; text-decoration:none; font-weight:bold;">انستغرام الفريق</a>
-            </div>
-            <button class="close-popup" onclick="closePopup()">إغلاق</button>
-        `;
+</div>
 
-        function openPopup(type) {
-            const inner = document.getElementById('popup-inner');
-            inner.innerHTML = type === 'details' ? detailsHtml : socialHtml;
-            document.getElementById('popup').style.display = 'flex';
-        }
-        function closePopup() { document.getElementById('popup').style.display = 'none'; }
-        window.onclick = function(event) { if (event.target == document.getElementById('popup')) closePopup(); }
-    </script>
+<div class="links-group">
+
+<a href="https://forms.gle/Hgtw8ZrdphFqdJRX8" class="btn-link">
+✨ انضم إلينا (فورم الانتساب)
+</a>
+
+<button class="btn-link" onclick="openPopup('details')">
+📖 تفاصيل المبادرة والفعاليات
+</button>
+
+<button class="btn-link"
+onclick="openPopup('social')"
+style="background:rgba(255,255,255,0.1);color:white;border:1px solid #d4af37;animation:none;">
+📱 حسابات فريق ابسيلون
+</button>
+
+<a href="https://wa.me/962789785559" class="btn-link btn-wa">
+
+<span style="display:block;font-size:1.1rem;">
+💬 حاب تساهم وما بتقدر تيجـي؟
+</span>
+
+<span style="display:block;font-size:.85rem;font-weight:normal;opacity:.9;">
+ولا يهمك.. الخير بوصل بلمحة عين
+</span>
+
+</a>
+
+</div>
+
+<div class="footer-text">
+
+برعاية الأستاذ الدكتور عامر الدرويش <br>
+
+© فريق ابسيلون 2026 <br>
+
+<a href="https://wa.me/962781322633" class="dev-credit">
+طُوّر بواسطة BRAKAT 🚀
+</a>
+
+</div>
+
+</div>
+</div>
+
+<div class="popup-overlay" id="popup">
+<div class="popup-content" id="popup-inner"></div>
+</div>
+
+<script>
+
+const detailsHtml=`
+<h2 style="color:#7a1616;">إفطار الصائم الصغير 🌙</h2>
+
+<p style="text-align:right;font-size:.9rem;color:#444;line-height:1.6;">
+هم ليسوا مجرد أيتام، بل قلوب تنتظر الفرح
+</p>
+
+<ul style="list-style:none;padding:0;text-align:right">
+
+<li>✨ 2  سندوش برغر للطفل </li>
+<li>✨ بطاطا</li>
+<li>✨ تمر +مي </li>
+<li>✨ عصير او كولا</li>
+<li>✨ ايس كريم</li>
+<li>✨8 العاب من اختيارهم</li>
+<li>✨ رسم على الوجه</li>
+<li>✨  فعاليات وألعاب</li>
+<li>✨ وجبة افطار للمتطوع</li>
+
+</ul>
+
+<button class="close-popup" onclick="closePopup()">
+سأكون جزءاً من فرحتهم 🤍
+</button>
+`;
+
+const socialHtml=`
+<h2 style="color:#7a1616;">تواصل معنا</h2>
+
+<div style="display:flex;flex-direction:column;gap:10px;margin:15px 0;">
+
+<a href="https://web.facebook.com/profile.php?id=61563817410280"
+style="background:#1877F2;padding:12px;border-radius:15px;color:white;text-decoration:none;font-weight:bold;">
+صفحة الفريق
+</a>
+
+<a href="https://www.instagram.com/epsilon_team24/"
+style="background:linear-gradient(45deg,#f09433,#bc1888);padding:12px;border-radius:15px;color:white;text-decoration:none;font-weight:bold;">
+انستا الفريق
+</a>
+
+</div>
+
+<button class="close-popup" onclick="closePopup()">إغلاق</button>
+`;
+
+function openPopup(type){
+const inner=document.getElementById('popup-inner');
+inner.innerHTML=type==='details'?detailsHtml:socialHtml;
+document.getElementById('popup').style.display='flex';
+}
+
+function closePopup(){
+document.getElementById('popup').style.display='none';
+}
+
+window.onclick=function(event){
+if(event.target==document.getElementById('popup'))
+closePopup();
+}
+
+</script>
 
 </body>
 </html>
-
-
-
-
-
