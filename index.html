@@ -396,9 +396,48 @@ color:#25D366;
 
 © فريق ابسيلون 2026 <br>
 
-<a href="https://wa.me/962781322633" class="dev-credit">
-طُوّر بواسطة BRAKAT 🚀
+<!-- زر طور بواسطة بركات -->
+<a href="https://wa.me/962781322633" class="brakat-btn">
+🚀 طور بواسطة بركات
 </a>
+
+<style>
+
+.brakat-btn{
+position:fixed;
+bottom:20px;
+left:20px;
+background:linear-gradient(45deg,#25D366,#128C7E);
+color:white;
+padding:12px 18px;
+border-radius:50px;
+font-weight:bold;
+text-decoration:none;
+font-size:.9rem;
+box-shadow:0 0 15px rgba(0,0,0,.4);
+animation:brakatPulse 1.5s infinite;
+z-index:9999;
+}
+
+/* حركة نبض */
+@keyframes brakatPulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
+}
+
+/* سهم يشير */
+.brakat-btn::after{
+content:" 👆 اكبسني";
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%,100%{opacity:1}
+50%{opacity:.4}
+}
+
+</style>
 
 </div>
 
@@ -468,6 +507,7 @@ closePopup();
 
 </body>
 </html>
+
 
 
 
